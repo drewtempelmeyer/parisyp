@@ -1,0 +1,13 @@
+{% for event in events %}
+  <li class="clearfix{% if forloop.first %} first{% else %}{% if forloop.last %} last{% endif %}{% endif %}">
+    <span class="date">
+      {{ event.occurring|date:'M j' }}
+      &mdash;
+    </span>
+    <a href="{{ event.get_absolute_url }}">{{ event }}</a>
+    {% if event.venue %}
+      <span class="date smaller">{{ event.venue }}</span>
+    {% endif %}
+  </li>
+{% endfor %}
+

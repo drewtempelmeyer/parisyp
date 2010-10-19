@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>{% block title %}{% endblock %} | Paris Young Professionals</title>
+  <link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/reset.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/960.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/text.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/youngpros.css" type="text/css" media="screen"/>
+  <meta name="keywords" content="paris young professionals, paris, texas, tx, paris texas, young, professionals, northeast, north, east, texas, netexas"/>
+  <meta name="description" content="Paris Young Professionals is an organization that allows you to network with other professionals and give back to the community."/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ MEDIA_URL }}javascripts/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-88847-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  {% block head %}{% endblock %}
+</head>
+
+{% load event_tags %}
+
+<body>
+  <div id="top">
+    <div class="container_12">
+      <div class="grid_10 prefix_1">
+        <p>
+          <a href="http://twitter.com/parisyp">@parisyp</a> - <span id="tweet">loading tweet</span> <span class="date"></span>
+        </p>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="container_12" id="body">
+    <div class="grid_7 prefix_1">
+      <h1><a href="{% url home %}">Paris Young Professionals</a></h1>
+    </div>
+    <div class="grid_3 push_1 right" id="top-profile">
+      {% if user.is_authenticated %}
+        <img src="http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=35&amp;d={{ "http://static.parisyp.com/images/default-avatar.png"|urlencode }}" alt="avatar" height="35" width="35"/>
+        <p>
+          Welcome, <strong>{{ user.first_name }}</strong>.
+          <br/>
+          <a href="{% url edit_profile %}">Edit Profile</a> <span class="light">or</span> <a href="{% url logout %}">Logout</a>
+        </p>
+      {% else %}
+        <img src="http://www.gravatar.com/avatar/{{ "nobody@parisyp.com"|md5 }}?s=35&amp;d={{ "http://static.parisyp.com/images/default-avatar.png"|urlencode }}" alt="avatar" height="35" width="35"/>
+        <p>
+          Welcome, <strong>Guest</strong>.
+          <br/>
+          <a href="{% url signup %}">Sign Up</a> <span class="light">or</span> <a href="{% url django.contrib.auth.views.login %}">Login</a>
+        </p>
+      {% endif %}
+    </div>
+    
+    <div class="clear"></div>
+
+    <div class="grid_10 push_1">
+      <ul id="nav" class="clearfix">
+        <li class="first">
+          <a href="{% url home %}">Home</a>
+          To the house.
+        </li>
+        <li>
+          <a href="{% url blog %}">News</a>
+          Get the latest.
+        </li>
+        <li>
+          <a href="{% url events %}">Events</a>
+          These are fun.
+        </li>
+        <li>
+          <a href="{% url profiles %}">Profiles</a>
+          Discover new people.
+        </li>
+        <li>
+          <a href="{% url about %}">About</a>
+          Learn about us.
+        </li>
+        <li>
+          <a href="{% url contact %}">Contact</a>
+          We love letters.
+        </li>
+      </ul>
+    </div>
+
+    <div class="clear"></div>
+
+    {% if messages %}
+      <ul class="grid_10 push_1 messages list">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      <div class="clear"></div>
+    {% endif %}
+
+    <!-- Begin content -->
+    {% block content %}{% endblock %}
+    <!-- end content -->
+
+    <div class="clear"></div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container_12">
+      <div class="grid_4 push_1">
+        <h4>Navigate</h4>
+        <ul>
+          <li>
+            <a href="{% url home %}">Home</a>
+          </li>
+          <li>
+            <a href="{% url blog %}">News <span class="amp">&amp;</span> Updates</a>
+          </li>
+          <li>
+            <a href="{% url events %}">Events</a>
+          </li>
+          <li>
+            <a href="{% url profiles %}">Profiles</a>
+          </li>
+          <li>
+            <a href="{% url about %}">About</a>
+          </li>
+          <li>
+            <a href="{% url contact %}">Contact</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="grid_3 push_1">
+        <h4>Socialize</h4>
+        <ul>
+          <li>
+            <a href="http://twitter.com/parisyp">Follow us</a> on Twitter
+          </li>
+          <li>
+            <a href="http://www.facebook.com/pages/Young-Professionals-of-Paris-Texas/147402045279960">Like us</a> on Facebook
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid_3 push_1" id="handcrafted">
+        <h4>Local Links</h4>
+        <ul>
+          <li>
+            <a href="http://www.paristexas.com/">Paris Economic Development</a>
+          </li>
+          <li>
+            <a href="http://www.paristexas.gov/">City of Paris, Texas</a>
+          </li>
+          <li>
+            <a href="http://www.theparisnews.com/">The Paris News</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="grid_5 push_1">
+        <p>
+          &copy; Copyright 2010 Paris Young Professionals. All rights reserved.
+        </p>
+      </div>
+      <div class="grid_6 right">
+        <p>
+          Beautifully handcrafted in Paris, Texas by <a href="http://www.34twenty.com/">Drew Tempelmeyer</a>.
+        </p>
+      </div>
+        
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!-- End footer -->
+</body>
+</html>
+

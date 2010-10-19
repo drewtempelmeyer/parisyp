@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% load cache %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+  <div class="grid_10 prefix_1">
+    <p id="mission">
+      <strong>Paris Young Professionals</strong> is a social <span class="amp">&amp;</span> networking group
+      dedicated to providing a fun and interactive environment for the
+      Paris area young professionals to develop professionally and build
+      a better community.
+    </p>
+  </div>
+  
+  <div class="clear"></div>
+
+  <div class="grid_10 push_1 separator"></div>
+  
+  <div class="clear"></div>
+
+  {% cache 300 fp_bottom %}
+    <div class="grid_6 prefix_1">
+      <h2>Latest News</h2>
+      <ul id="post-list" class="show-sep">
+        {% for post in posts %}
+          <li{% if forloop.first %} class="first"{% endif %}>
+              <span class="date">{{ post.publish_date|date:'M j' }} &mdash;</span> <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+              <span class="tagline">{{ post.tagline }}</span>
+            </li>
+        {% endfor %}
+        <li class="last">
+          <a href="{% url blog %}">More News &rarr;</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Begin Event list -->
+    <div class="grid_3 prefix_1">
+      <h2>Events</h2>
+      <ul class="show-sep">
+        {% for event in events %}
+          <li{% if forloop.first %} class="first"{% endif %}>
+            <span class="date">{{ event.occurring|date:'M j' }} &mdash;</span> <a href="{{ event.get_absolute_url }}">{{ event }}</a>
+          </li>
+        {% endfor %}
+        <li class="last">
+          <a href="{% url events %}" title="More events">More Events &rarr;</a>
+        </li>
+      </ul>
+    </div>
+    <!-- End Event list -->
+  {% endcache %}
+
+{% endblock %}

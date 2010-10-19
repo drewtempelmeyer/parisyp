@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load cache %}
+{% load event_tags %}
+
+{% block title %}Profiles{% endblock %}
+
+{% block content %}
+  <div class="grid_10 push_1">
+    <h2>Profiles <span class="info">Page {{ page }} of {{ paginator.num_pages }}</span></h2>
+    {% cache 300 profile_index page %}
+      {% for user in u_list %}
+        <div class="grid_3 profile">
+          <div class="grid_1 alpha">
+            <a href="{% url profile user.id %}"><img src="http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=60&amp;d={{ "http://static.parisyp.com/images/default-avatar.png"|urlencode }}" alt="Gravatar" width="60" height="60"/></a>
+          </div>
+          <div class="grid_2 omega">
+            <p>
+              <a href="{% url profile user.id %}">{{ user.first_name }} {{ user.last_name }}</a>
+              {% if user.get_profile.company %}
+                <br/>
+                <span class="light">{{ user.get_profile.company }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    {% endcache %}
+
+    <div class="clear"></div>
+
+    <ul id="pagination-clean">
+      {% if page_obj.has_previous %}
+        <li><a href="{% url profiles %}?page={{ page_obj.previous_page_number }}">&laquo; Previous</a></li>
+      {% else %}
+        <li class="previous-off">&laquo; Previous</li>
+      {% endif %}
+      {% for p in page_range %}
+        <li><a href="{% url profiles %}?page={{ p }}">{{ p }}</a></li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li><a href="{% url profiles %}?page={{ page_obj.next_page_number }}">Next &raquo;</a></li>
+      {% else %}
+        <li class="next-off">Next &raquo;</li>
+      {% endif %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load date_groups %}
+{% load cache %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+  <div class="grid_10 push_1">
+    <h2>Events</h2>
+      {% for date in event_dates %}
+        <h3><a href="#month_{{ date.month }}_{{ date.year }}" name="month_{{ date.month }}_{{ date.year }}">{{ date|date:'F Y' }}</a></h3>
+        <ul class="show-sep">
+          {% events_for_month date.month date.year %}
+        </ul>
+      {% endfor %}
+  </div>
+{% endblock %}

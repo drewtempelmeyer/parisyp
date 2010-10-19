@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load comments %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <div class="grid_10 push_1">
+    <h2>{{ post }}</h2>
+    <div class="blog-post">
+      <p class="info">
+        Posted at {{ post.publish_date }} by <a href="{% url profile post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+      </p>
+      {{ post.body|textile }}
+    </div>
+
+    {% if post.author.get_profile.biography %}
+      {% load event_tags %}
+      <div class="grid_10 alpha omega" id="author-bio">
+        <div class="grid_1 alpha">
+          <a href="{% url profile post.author.id %}"><img src="http://www.gravatar.com/avatar/{{ post.author.email|md5 }}?s=65" alt="Gravatar"/></a>
+        </div>
+        <div class="grid_9 omega">
+          <a href="{% url profile post.author.id %}" class="profile-link">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+          {{ post.author.get_profile.biography|textile }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+  <div class="grid_7 push_1">
+    <h2>Edit Your Profile</h2>
+    <form action="{% url edit_profile %}" method="post">
+      <ul class="form">
+        {% for field in form %}
+          <li>
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+          </li>
+        {% endfor %}
+        <li>
+          {% csrf_token %}
+          <input type="submit" value="Save Profile"/>
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <div class="grid_3 push_1">
+    <h3>Tips</h3>
+    <p>
+      <strong>Do not include</strong> anything that you do not want publicly displayed.
+      All of the information you provide will be publicly available.
+    </p>
+
+    <p>
+      Want to <strong>change your profile picture</strong>? Head on over to
+      <a href="http://www.gravatar.com/" title="Gravatar">Gravatar</a> and sign up
+      using your email address.
+    </p>
+  </div>
+{% endblock %}

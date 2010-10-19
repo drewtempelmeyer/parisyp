@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block title %}
+  News 
+{% endblock %}
+
+{% block content %}
+  <div class="grid_10 push_1">
+    <h2>News <span class="amp">&amp;</span> Updates</h2>
+    {% for post in post_list %}
+      <div class="blog-post">
+        <h3><a href="{{ post.get_absolute_url }}">{{ post }}</a></h3>
+        <p class="info">
+          Posted at {{ post.publish_date }} by <a href="{% url profile post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+        </p>
+        {{ post.body|textile }}
+      </div>
+    {% endfor %}
+
+    <div class="clear"></div>
+
+    <ul id="pagination-clean">
+      {% if page_obj.has_previous %}
+        <li><a href="{% url blog %}?page={{ page_obj.previous_page_number }}">&laquo; Previous</a></li>
+      {% else %}
+        <li class="previous-off">&laquo; Previous</li>
+      {% endif %}
+      {% for p in page_range %}
+        <li><a href="{% url blog %}?page={{ p }}">{{ p }}</a></li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li><a href="{% url blog %}?page={{ page_obj.next_page_number }}">Next &raquo;</a></li>
+      {% else %}
+        <li class="next-off">Next &raquo;</li>
+      {% endif %}
+    </ul>
+
+  </div>
+{% endblock %}

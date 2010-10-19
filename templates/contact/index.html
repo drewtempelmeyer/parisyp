@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+  <div class="grid_6 push_1">
+    <h2>Contact</h2>
+    <form method="post" action="{% url contact %}">
+      <ul class="form">
+        {% for field in form %}
+          <li>
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+          </li>
+        {% endfor %}
+        <li>
+          {% csrf_token %}
+          <input type="submit" value="Send Message"/>
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <div class="grid_3 push_2">
+    <h3>Become Social</h3>
+    <ul class="list">
+      <li>
+        <a href="http://twitter.com/parisyp/">Follow us</a> on Twitter.
+      </li>
+      <li>
+        <a href="http://www.facebook.com/pages/Young-Professionals-of-Paris-Texas/147402045279960">Socialize</a> with us on Facebook.
+      </li>
+    </ul>
+  </div>
+{% endblock %}

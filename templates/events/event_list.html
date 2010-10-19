@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+  <div class="grid_10 push_1">
+    <h2>Upcoming Events</h2>
+    {% for event in event_list %}
+      {{ event }}
+    {% empty %}
+      <p>
+        Sorry, but it appears as if we don't have any upcoming events. Check back at a later date.
+      </p>
+    {% endfor %}
+  </div>
+{% endblock %}

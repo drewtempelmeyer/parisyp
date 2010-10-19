@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="grid_6 push_1">
+    <h2>Sign Up</h2>
+    <p>
+      Thanks for your interest in Paris Young Professionals. It's easy to get started. Just fill out all of the fields below
+      and click "Sign Up."
+    </p>
+    <form method="post" action="{% url signup %}">
+      <ul class="form">
+        {% for field in form %}
+          <li>
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+          </li>
+        {% endfor %}
+        <li>
+          <input type="submit" value="Create Account"/>
+          {% csrf_token %}
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <div class="grid_3 push_2">
+    <h3>Why Sign Up?</h3>
+    <ul>
+      <li>
+        <strong>Network</strong> with fellow young professionals like yourself.
+      </li>
+      <li>
+        <strong>Reserve</strong> a spot in our fun meets.
+      </li>
+      <li>
+        <strong>Get involved</strong> in the local community.
+      </li>
+    </ul>
+    <p>
+      
+    </p>
+  </div>
+{% endblock %}

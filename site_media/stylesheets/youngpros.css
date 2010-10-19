@@ -1,0 +1,229 @@
+/*
+ * Stylesheet for Paris Young Professionals
+ * ======================================================
+ *
+ * Do not steal any of this code.
+ * 
+ * The majority of this was written by Drew Tempelmeyer.
+ * Drew doesn't appreciate theft.
+ * You can _learn_ from it, but there's a difference between learning and stealing.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * Beautifully, hand-crafted designed and developed by Drew Tempelmeyer.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+*/
+
+@font-face {
+	font-family: 'CartoGothicStdBook';
+	src: url('CartoGothicStd-Book-webfont.eot');
+	src: local('☺'), url('CartoGothicStd-Book-webfont.woff') format('woff'), url('CartoGothicStd-Book-webfont.ttf') format('truetype'), url('CartoGothicStd-Book-webfont.svg#webfontiSSvHuvy') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CartoGothicStdItalic';
+	src: url('CartoGothicStd-Italic-webfont.eot');
+	src: local('☺'), url('CartoGothicStd-Italic-webfont.woff') format('woff'), url('CartoGothicStd-Italic-webfont.ttf') format('truetype'), url('CartoGothicStd-Italic-webfont.svg#webfontVz7NhMTG') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CartoGothicStdBold';
+	src: url('CartoGothicStd-Bold-webfont.eot');
+	src: local('☺'), url('CartoGothicStd-Bold-webfont.woff') format('woff'), url('CartoGothicStd-Bold-webfont.ttf') format('truetype'), url('CartoGothicStd-Bold-webfont.svg#webfontXG7opWym') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'BebasRegular';
+	src: url('BEBAS___-webfont.eot');
+	src: local('☺'), url('BEBAS___-webfont.woff') format('woff'), url('BEBAS___-webfont.ttf') format('truetype'), url('BEBAS___-webfont.svg#webfontGVi5sdIl') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html, body { height: 100%; }
+
+body { background: url('../images/body-bg.gif') repeat scroll 0 0; }
+
+a { color: #067dbb; }
+a:hover { color: #067dbb; text-decoration: underline; }
+
+h1 { text-indent: -9999em; }
+  h1 a { background: url('../images/youngp.gif') no-repeat scroll 0 0; display: block; height: 83px; width: 221px; }
+
+h3, h4 { margin-bottom: 0.5em; }
+
+.right { text-align: right; }
+.separator { background: url('../images/lines.gif') repeat scroll 0 0; height: 8px; margin: 2em 0; }
+
+#top { background: url('../images/top-bg.gif') repeat-x scroll 0 0; border-bottom: 3px solid rgba(0, 0, 0, 0.14); clear: both; float: left; width: 100%; }
+  #top p { color: #aca5a5; font-family: Georgia, 'Times New Roman', times, serif; font-style: italic; margin: 0; padding: 10px 0; }
+    #top p span.date { font-size: 75%; }
+  #top a { color: #64caff; text-decoration: none; }
+
+#body { background: url('../images/content-bg.gif') repeat-y scroll 0 0; padding: 80px 0; height: auto !important; height: 70%; min-height: 70%; }
+  #body .container_12 { height: auto !important; height: 100%; min-height:100%; }
+
+#top-profile img { clear: left; display: block; float: left; }
+#top-profile p { clear: right; float: left; font-size: 90%; margin-left: 10px; text-align: left; }
+
+#nav { background: url('../images/menu-bg.gif') no-repeat scroll 0 0; list-style: none; margin: 2.5em 0; }
+  #nav li { clear: none; color: #7b7b7b; float: left; font-family: Georgia, 'Times New Roman', times, serif; font-size: 90%; font-style: italic; margin: 0 0 0 54px; padding: 8px 0; }
+  #nav li.first { margin-left: 0 !important; }
+    #nav li a { color: #000; display: block; font-family: 'CartoGothicStdBold', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 125%; font-style: normal; text-decoration: none; text-transform: uppercase; }
+    #nav li a:hover { color: #067dbb; }
+
+
+
+/*
+ * PRETTYFYING
+*/
+h2 { font-family: 'BebasRegular', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 200%; font-weight: normal; letter-spacing: 1px; text-transform: uppercase; }
+  h2 a, h3 a { text-decoration: none; }
+  h2 span.info { color: #999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 60%; letter-spacing: 0; }
+
+.amp { font-family: Baskerville, Palatino, 'Book Antiqua', Georgia, serif; font-style: italic; }
+.light { color: #999; }
+#mission { font-size: 200%; }
+
+span.tagline { clear: both; color: #999; display: block; font: italic normal 0.9em/1.5 Georgia, 'Times New Roman', times, serif; }
+
+ul.list { list-style: none; }
+  ul.list li { margin: 0; }
+
+.show-sep { list-style: none; }
+  .show-sep li { border-bottom: 1px solid #ececec; margin: 0; padding: 1em 0; }
+  .show-sep li.first { padding-top: 0 !important; }
+  .show-sep li.last { border-bottom: 0; }
+    .show-sep li span.date { color: #7b7b7b; }
+    .show-sep li a { color: #000; font-weight: bold; text-decoration: none; }
+    .show-sep li a:hover { color: #067dbb; }
+
+#post-list li a { color: #000; font-weight: bold; text-decoration: none; }
+
+.blog-post { margin-bottom: 2em; }
+  .blog-post h3 { margin-bottom: 0; }
+  .blog-post p.info { color: #999; font: italic normal 0.9em/1.5 Georgia, 'Times New Roman', times, serif; margin: 0.25em 0 0.5em 0; }
+
+#author-bio { background: #f4f4f4; border-bottom: 1px solid #e7e7e7; border-top: 1px solid #e7e7e7; padding: 0.5em 0; }
+  #author-bio a.profile-link { color: #000; display: block; font-weight: bold; text-decoration: none; }
+
+ul.form { list-style: none; }
+  ul.form li { margin: 0 0 1.5em 0; }
+    ul.form li label { display: block; font-size: 1.06em; font-weight: bold; margin-bottom: 0.5em; }
+    ul.form li input[type="text"], ul.form li input[type="password"], ul.form li textarea { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1em; padding: 5px; }
+    ul.form li ul li { margin: 0; }
+
+span.event-date {
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+  background: #cdcdcd;
+  color: #fff;
+  display: inline;
+  float: left;
+  font: normal normal 0.45em/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 5px 20px;
+}
+  span.event-date span { display: block; text-align: center; }
+  span.event-date span.day { font-size: 150%; font-weight: bold; }
+
+span.title { display: block; float: left; margin: 12px 0 0 15px; }
+
+ul.attending { list-style: none; }
+  ul.attending li { float: left; margin: 0 1px 0 0; }
+
+div.profile { margin-bottom: 3em; }
+  div.profile .grid_2 p { color: #999; }
+
+ul#profile-info { list-style: none; margin-bottom: 4em; }
+  ul#profile-info li { margin: 0 0 1em 0; }
+    ul#profile-info li label { clear: both; display: block; float: left; font-weight: bold; text-transform: uppercase; width: 100%; }
+
+/*
+ * PAGINATION
+ */
+#pagination-clean li{
+border:0; margin:0; padding:0;
+font-size:11px;
+list-style:none;
+}
+#pagination-clean li, #pagination-clean a{
+border:solid 1px #DEDEDE
+margin-right:2px;
+}
+#pagination-clean .previous-off,
+#pagination-clean .next-off {
+color:#888888
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-clean .next a,
+#pagination-clean .previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+} 
+#pagination-clean .active{
+color:#00000
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-clean a:link,
+#pagination-clean a:visited {
+color:#0033CC
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-clean a:hover{
+text-decoration:none;
+}
+
+.error, .notice, .success { padding: 5px; }
+.error, .errorlist { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
+.notice     { background: #FFF6BF; color: #514721; border-color: #FFD324; }
+.success    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.error a    { color: #8a1f11; }
+.notice a   { color: #514721; }
+.success a  { color: #264409; }
+
+ul.errorlist { list-style: none; margin: 0; }
+  ul.errorlist { margin: 0 !important; }
+
+/*
+ * It would only seem logical to place the footer styles at the footer of the stylesheet
+*/
+#footer { background: #333; border-top: 3px solid rgba(0, 0, 0, 0.14); clear: both; color: #dedede; float: left; font-size: 90%; padding: 2em 0; width: 100%; }
+  #footer h4 { color: #fff; font-size: 125%; text-transform: uppercase; }
+  #footer a { color: #64caff; text-decoration: none; }
+  #footer p { margin-bottom: 0; }
+  #footer ul { list-style: none; }
+    #footer ul li { margin: 0.25em 0; }
+

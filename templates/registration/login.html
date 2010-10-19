@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <div class="grid_7 push_1">
+    <h2>Login</h2>
+    {% if form.errors %}
+      <p class="error">
+        Your email address and password didn't match. Please try again.
+      </p>
+    {% endif %}
+
+    <form method="post" action="{% url django.contrib.auth.views.login %}">
+      <ul class="form">
+        <li>
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </li>
+        <li>
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </li>
+        <li>
+          {% csrf_token %}
+          <input type="hidden" name="next" value="/"/>
+          <input type="submit" value="Login"/>
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <div class="grid_3 push_1">
+    <h2>Not a Member?</h2>
+    <p>
+      Not a problem.
+    </p>
+  </div>
+{% endblock %}

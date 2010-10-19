@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% load event_tags %}
+
+{% block title %}{{ u.first_name }} {{ u.last_name }}{% endblock %}
+
+{% block content %}
+  <!-- Start person's avatar -->
+  <div class="grid_3 push_1">
+    <img src="http://www.gravatar.com/avatar/{{ u.email|md5 }}?s=175&amp;d={{ "http://static.parisyp.com/images/default-avatar.png"|urlencode }}" alt="{{ u.first_name }} {{ u.last_name }}" height="175" width="175"/>
+    <ul id="social" class="grid_3 alpha omega">
+      {% if u.get_profile.facebook %}
+        <li class="grid_1 alpha"><a href="{{ u.get_profile.facebook }}"><img src="{{ MEDIA_URL }}images/facebook.png" alt="Facebook"/></a></li>
+      {% endif %}
+      {% if u.get_profile.linkedin %}
+        <li class="grid_1"><a href="{{ u.get_profile.linkedin }}"><img src="{{ MEDIA_URL }}images/linkedin.png" alt="LinkedIn"/></a></li>
+      {% endif %}
+      {% if u.get_profile.twitter %}
+        <li class="grid_1 omega"><a href="http://twitter.com/{{ u.get_profile.twitter }}"><img src="{{ MEDIA_URL }}images/twitter.png" alt="Twitter"/></a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <!-- End person's avatar -->
+
+  <!-- Start profile information -->
+  <div class="grid_7 push_1">
+    <h2>{{ u.first_name }} {{ u.last_name }}</h2>
+    <ul id="profile-info">
+      {% if u.get_profile.company %}
+        <li>
+          <label>Company</label>
+          {{ u.get_profile.company }}
+        </li>
+      {% endif %}
+      {% if u.get_profile.twitter %}
+        <li>
+          <label>Twitter</label>
+          <a href="http://twitter.com/{{ u.get_profile.twitter }}">http://twitter.com/{{ u.get_profile.twitter }}</a>
+        </li>
+      {% endif %}
+      {% if u.get_profile.facebook %}
+        <li>
+          <label>Facebook</label>
+          <a href="{{ u.get_profile.facebook }}">{{ u.get_profile.facebook }}</a>
+        </li>
+      {% endif %}
+      {% if u.get_profile.linkedin %}
+        <li>
+          <label>LinkedIn</label>
+          <a href="{{ u.get_profile.linkedin }}">{{ u.get_profile.linkedin }}</a>
+        </li>
+      {% endif %}
+      {% if u.get_profile.biography %}
+        <li>
+          <label>Biography</label>
+          {{ u.get_profile.biography|textile }}
+        </li>
+      {% endif %}
+    </ul>
+
+    <h4>I'm Attending</h4>
+    {% if u.attending.all %}
+      <ul class="show-sep">
+        {% for event in u.attending.all %}
+          <li{% if forloop.first %} class="first"{% else %}{% if forloop.last %} class="last"{% endif %}{% endif %}>
+            <span class="date">{{ event.occurring|date:'F j' }}</span>
+            -
+            <a href="{{ event.get_absolute_url }}">{{ event }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>
+        Looks like {{ u.first_name }} isn't attending any upcoming events.
+      </p>
+    {% endif %}
+  </div>
+  <!-- End profile information -->
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load event_tags %}
+{% load markup %}
+{% load comments %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/tipsy.css" type="text/css" media="screen"/>
+  <script type="text/javascript" src="{{ MEDIA_URL }}javascripts/jquery.tipsy.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('.attending a').tipsy();
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="grid_7 push_1">
+    <h2>{{ event.title }}</h2>
+
+    <ul id="profile-info">
+      <li>
+        <label>When</label>
+        {{ event.occurring|date:'l, F j Y, g:i a' }}
+      </li>
+      {% if event.venue or event.address %}
+        <li>
+          <label>Where</label>
+          {% if event.venue %}
+            {{ event.venue }}
+          {% endif %}
+          {% if event.address %}
+            {% if event.venue %}
+              <br/>
+            {% endif %}
+            {{ event.address|linebreaksbr }}
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if event.description %}
+        <li>
+          <label>Description</label>
+          {{ event.description|textile }}
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <div class="grid_3 push_1">
+    {% if user.is_authenticated %}
+      {% is_attending event user %}
+      {% if is_attending %}
+        <p>
+          <a href="{% url unattend_event event.slug %}" onclick="return confirm('Are you sure you\'re not attending this event?');"><img src="{{ MEDIA_URL }}images/not-attending.png" alt="I'm Not Attending"/></a>
+        </p>
+      {% else %}
+        <p>
+          <a href="{% url attending_event event.slug %}"><img src="{{ MEDIA_URL }}images/im-attending.png" alt="I'm Attending"/></a>
+        </p>
+      {% endif %}
+    {% else %}
+      <p>
+        Want to attend this event? <a href="#">Sign up</a> for an account and come back.
+      </p>
+    {% endif %}
+
+    <h3>People Attending</h3>
+    {% if event.attending.all %}
+      <ul class="attending">
+        {% for u in event.attending.all %}
+          <li><a href="{% url profile u.id %}" title="{{ u.first_name }} {{ u.last_name }}"><img src="http://www.gravatar.com/avatar/{{ u.email|md5 }}?s=40" alt="{{ u.first_name }} {{ u.last_name }}"/></a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>
+        Doesn't appear as if anyone is attending yet. You should be the first!
+      </p>
+    {% endif %}
+  </div>
+{% endblock %}
